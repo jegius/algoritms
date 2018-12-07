@@ -1,7 +1,7 @@
 //Реализаци алгоритма бинарного поиска
 
 const binarySearch = (list, item) => {
-    console.log("Binery search testtin: ")
+    console.log("Binary search test: ");
 
     let low = 0;
     let height = list.length - 1;
@@ -10,7 +10,7 @@ const binarySearch = (list, item) => {
     while (low <= height) {
         let mid = Math.floor((low + height) / 2);
         if (list[mid] === item) {
-            console.log(new Date().getTime() - time)
+            console.log(new Date().getTime() - time);
             return mid;
         }
 
@@ -21,47 +21,45 @@ const binarySearch = (list, item) => {
         }
     }
     return null;
-}
+};
 
 const badSearch = (array, item) => {
     let time = new Date().getTime();
-    console.log("bad search testing: ")
+    console.log("Bad search testing: ");
     for (let i = 0; i < array.length; i++) {
         if (array[i] === item) {
-            console.log(new Date().getTime() - time)
+            console.log(new Date().getTime() - time);
             return item
         }
     }
     return null;
-}
+};
 
-const searchWithStremApi = (array, item) => {
-    console.log("Stram search testtin: ")
+const searchWithStreamApi = (array, item) => {
+    console.log("Stream search test: ");
     let time = new Date().getTime();
 
-    let element = array.find(element => {
-        element == item
-    })
+    let element = array.find(element => element === item);
 
     console.log(new Date().getTime() - time)
-}
+};
 
-let test = []
-for (i = 0; i < 25600000; i++) {
+let test = [];
+for (let i = 0; i < 25600000; i++) {
     test.push(i)
 }
 
 binarySearch(test, 23300000);
-console.log("=========================================")
-searchWithStremApi(test, 23300000);
-console.log("=========================================")
+console.log("=========================================");
+searchWithStreamApi(test, 23300000);
+console.log("=========================================");
 badSearch(test, 23300000);
 
 /*
-* Binery search testtin: 
+* Binary search test:
 * 0
 * =========================================
-* Stram search testtin: 
+* Stream search test:
 * 432
 * =========================================
 * bad search testing: 
@@ -74,14 +72,14 @@ badSearch(test, 23300000);
 const findMin = array => {
     let min = array[0];
 
-    array.forEach((element, index) => {
+    array.forEach((element) => {
         if (element < min) {
             min = element;
         }
-    })
+    });
 
     return array.indexOf(min);
-}
+};
 
 const selectionSort = array => {
     let result = [];
@@ -93,9 +91,9 @@ const selectionSort = array => {
     }
 
     return result;
-}
+};
 
-let testTwo = [2, 32, 0, -34, 345, 345, 46, 3456, -32523, 464657, 45678, 64578, 543, 5435, 4]
+let testTwo = [2, 32, 0, -34, 345, 345, 46, 3456, -32523, 464657, 45678, 64578, 543, 5435, 4];
 
 selectionSort(testTwo);
 
@@ -104,7 +102,7 @@ selectionSort(testTwo);
 */
 recSum = (array) => {
     return array.length && array.pop() + recSum(array)
-}
+};
 
 /*
 * Quick sort
@@ -127,7 +125,7 @@ let quickSort = (array) => {
         }
         return [...quickSort(less), temp, ...quickSort(greater)]
     }
-}
+};
 
 /**
  *  Graph
@@ -150,27 +148,27 @@ let search = name => {
     let isElementFind = persone => persone === name;
     let getFristElement = graph => {
         return Object.keys(graph)[0];
-    }
+    };
     
     let quite = [...graph[getFristElement(graph)]];
     let searched = [];
     
-    console.log(quite)
+    console.log(quite);
     while (quite.length) {
-        let persone = quite.pop();
-        if (searched.indexOf(persone) === -1) {
-            if (isElementFind(persone)) {
-                console.log(quite)
-                return persone;
+        let user = quite.pop();
+        if (searched.indexOf(user) === -1) {
+            if (isElementFind(user)) {
+                console.log(quite);
+                return user;
             } else {
-                console.log(quite)
-                quite = quite.concat(graph[persone]);
-                searched.push(persone);
+                console.log(quite);
+                quite = quite.concat(graph[user]);
+                searched.push(user);
             }
         }
     }
     return false;
-}
+};
 
 search('siri');
 /**
@@ -178,21 +176,21 @@ search('siri');
 */
 
 let graph = {};
-graph.start = {}
+graph.start = {};
 graph.start.a = 5;
 graph.start.b = 2;
-graph.a = {}
+graph.a = {};
 graph.a.c = 4;
 graph.a.d = 2;
 graph.c = {};
 graph.c.d = 6;
 graph.c.fin = 3;
-graph.d = {}
+graph.d = {};
 graph.d.fin = 1;
 graph.b = {};
 graph.b.a = 8;
 graph.b.d = 7;
-graph.fin = {}
+graph.fin = {};
 
 costs = {};
 costs.a = 5;
@@ -222,7 +220,7 @@ let findLowestCostNode = costs => {
         }
     }
     return lowestCostNode;
-}
+};
 
 let node = findLowestCostNode(costs);
 
@@ -241,10 +239,10 @@ while(node){
 }
 
 
-console.log(processed)
-console.log(parents)
-console.log(costs)
-console.log(graph)
+console.log(processed);
+console.log(parents);
+console.log(costs);
+console.log(graph);
 
 /**
  * Жадные алгоритмы
@@ -272,13 +270,13 @@ while(neededStates.size){
         });
     
         return covered;
-    }
+    };
 
     let removeCovered = coveredStates => {
         coveredStates.forEach(element => {
             if(neededStates.has(element)) neededStates.delete(element)
         })
-    }
+    };
 
     for(let station in stations) {
         let covered = getCovered(neededStates, stations[station]);
